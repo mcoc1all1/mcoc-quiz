@@ -1223,6 +1223,12 @@
     (function () {
       "use strict";
 
+      // Keep track of which "screen" we're on so the browser Back button
+      // (or swipe back on mobile) can return to the home screen.
+      if (history.state === null) {
+        history.replaceState({ screen: "home" }, document.title, location.href);
+      }
+
       const EASY_QUESTION_MAX = 30;
       const HARD_QUESTION_COUNT = 15;
 
@@ -1464,6 +1470,10 @@
         }
 
         currentMode = mode;
+
+        // When a quiz starts, push a new history state.
+        // Now the device Back button will go from quiz -> home instead of leaving the site.
+        history.pushState({ screen: "quiz" }, document.title, "#quiz");
 
         if (mode === "easy") {
           pointsPerQuestion = 1;
@@ -1834,6 +1844,19 @@
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#039;");
       }
+
+      // Handle browser Back / swipe navigation
+      window.addEventListener("popstate", function (event) {
+        const screen = event.state && event.state.screen;
+
+        // If the history state says "home", show the start screen.
+        // This triggers when the user presses Back while in a quiz.
+        if (screen === "home" || screen === undefined || screen === null) {
+          goHome();
+        }
+        // (If you later add separate states for "result" etc.,
+        // you can handle them here too.)
+      });
     })();
   </script>
 </body>
