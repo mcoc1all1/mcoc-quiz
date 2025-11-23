@@ -940,20 +940,52 @@
     }
 
     /* Mobile layout fixes */
+/* Mobile layout tweaks */
 @media (max-width: 600px) {
-  /* Allow the page to scroll vertically on phones */
+  /* Allow scrolling and reduce side padding */
   body {
     overflow-x: hidden;
     overflow-y: auto;
+    padding: 12px 8px;
   }
 
-  /* Let cards grow fully on small screens instead of clipping content */
+  .app-shell {
+    gap: 12px;
+  }
+
+  /* Header: stack nicely */
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .site-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .tagline {
+    max-width: 100%;
+    font-size: 0.82rem;
+  }
+
+  /* Cards should grow and not clip content */
   .panel-card {
     max-height: none;
     overflow: visible;
+    padding: 20px 14px 16px;
   }
 
-  /* Stack mode buttons nicely and keep them visible */
+  .question-text {
+    font-size: 0.96rem;
+  }
+
+  /* Difficulty buttons: full-width, stacked */
   .mode-buttons {
     flex-direction: column;
     align-items: stretch;
@@ -964,7 +996,29 @@
     justify-content: center;
     text-align: center;
   }
+
+  /* Global button tweaks for mobile: smaller font, allow wrapping */
+  .btn {
+    font-size: 0.86rem;
+    padding: 9px 12px;
+    white-space: normal; /* important: lets button text wrap on small screens */
+  }
+
+  /* Quiz footer: stack text + actions */
+  .quiz-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .quiz-footer-note {
+    max-width: 100%;
+  }
+
+  .quiz-footer-actions {
+    justify-content: flex-end;
+  }
 }
+
 
 
     @media (min-width: 768px) {
