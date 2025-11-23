@@ -941,19 +941,33 @@
       }
     }
 
-    /* Mobile tweaks for mode buttons */
+    /* Mobile layout fixes */
 @media (max-width: 600px) {
+  /* Allow the page to scroll vertically on phones */
+  body {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  /* Let cards grow fully on small screens instead of clipping content */
+  .panel-card {
+    max-height: none;
+    overflow: visible;
+  }
+
+  /* Stack mode buttons nicely and keep them visible */
   .mode-buttons {
     flex-direction: column;
-    align-items: stretch;   /* make children fill width */
+    align-items: stretch;
   }
 
   .mode-buttons .btn {
     width: 100%;
-    justify-content: center;  /* label centered inside */
+    justify-content: center;
     text-align: center;
   }
 }
+
 
     @media (min-width: 768px) {
       .panel-card {
