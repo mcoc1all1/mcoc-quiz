@@ -56,7 +56,6 @@
       justify-content: center;
       align-items: stretch;
       padding: 16px;
-      /* allow vertical scroll on small screens, keep horizontal clean */
       overflow-x: hidden;
       overflow-y: auto;
       position: relative;
@@ -471,14 +470,6 @@
       color: var(--text-soft);
     }
 
-    .safety-note h3 {
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-
     .safety-note ul {
       margin: 0;
       padding-left: 18px;
@@ -585,9 +576,28 @@
       color: var(--accent-strong-2);
     }
 
+    /* streak badge */
+    #streak-tag {
+      background: radial-gradient(circle at 20% 0%, #bbf7d0, #22c55e);
+      border-color: rgba(34, 197, 94, 0.9);
+      color: #064e3b;
+      animation: streak-pulse 0.7s infinite alternate;
+    }
+
+    @keyframes streak-pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 6px rgba(34, 197, 94, 0.3);
+      }
+      100% {
+        transform: scale(1.06);
+        box-shadow: 0 0 12px rgba(34, 197, 94, 0.5);
+      }
+    }
+
     .progress-bar {
       width: 100%;
-      height: 7px;
+      height: 9px;
       border-radius: 999px;
       background: #eff6ff;
       border: 1px solid rgba(129, 140, 248, 0.8);
@@ -876,7 +886,7 @@
       }
     }
 
-    /* new flash animations for correct / wrong */
+    /* flash animations for correct / wrong */
     .question-card.correct-flash {
       box-shadow:
         0 0 0 2px rgba(34, 197, 94, 0.9),
@@ -939,98 +949,98 @@
       }
     }
 
-    /* Mobile layout fixes */
+    .section-title {
+      text-align: center;
+    }
+
+    .section-lead {
+      margin-top: 4px;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      text-align: center;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* Mobile layout tweaks */
-    /* Mobile layout fixes */
-@media (max-width: 600px) {
-  /* Allow the page to scroll vertically on phones */
-  body {
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+    @media (max-width: 600px) {
+      body {
+        overflow-x: hidden;
+        overflow-y: auto;
+      }
 
-  /* HEADER: stack nicely on small screens */
-  .site-header {
-    flex-direction: column;        /* instead of row */
-    align-items: center;           /* center everything */
-    text-align: center;
-    gap: 8px;
-    padding: 10px 14px;
-  }
+      .site-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        padding: 10px 14px;
+      }
 
-  .site-header h1 {
-    width: 100%;
-    justify-content: center;
-    font-size: 1.25rem;            /* slightly smaller title on phones */
-  }
+      .site-header h1 {
+        width: 100%;
+        justify-content: center;
+        font-size: 1.25rem;
+      }
 
-  .badge {
-    margin-top: 4px;
-  }
+      .badge {
+        margin-top: 4px;
+      }
 
-  .header-right {
-    width: 100%;
-    flex-direction: column;        /* tagline + buttons in a column */
-    align-items: center;
-    gap: 6px;
-  }
+      .header-right {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
 
-  .tagline {
-    max-width: 100%;
-    font-size: 0.86rem;
-    line-height: 1.3;
-  }
+      .tagline {
+        max-width: 100%;
+        font-size: 0.86rem;
+        line-height: 1.3;
+      }
 
-  /* Make header buttons look like clean full-width mobile CTAs */
-  .header-right .btn {
-    width: 100%;
-    justify-content: center;
-  }
+      .header-right .btn {
+        width: 100%;
+        justify-content: center;
+      }
 
-  /* Let cards grow fully on small screens instead of clipping content */
-  .panel-card {
-    max-height: none;
-    overflow: visible;
-  }
+      .panel-card {
+        max-height: none;
+        overflow: visible;
+      }
 
-  /* Stack mode buttons nicely and keep them visible */
-  .mode-buttons {
-    flex-direction: column;
-    align-items: stretch;
-  }
+      .mode-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-  .mode-buttons .btn {
-    width: 100%;
-    justify-content: center;
-    text-align: center;
-  }
-}
+      .mode-buttons .btn {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+      }
 
+      .btn {
+        font-size: 0.86rem;
+        padding: 9px 12px;
+        white-space: normal;
+      }
 
+      .quiz-footer {
+        flex-direction: column;
+        align-items: stretch;
+      }
 
-  /* Global button tweaks for mobile: smaller font, allow wrapping */
-  .btn {
-    font-size: 0.86rem;
-    padding: 9px 12px;
-    white-space: normal; /* important: lets button text wrap on small screens */
-  }
+      .quiz-footer-note {
+        max-width: 100%;
+      }
 
-  /* Quiz footer: stack text + actions */
-  .quiz-footer {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .quiz-footer-note {
-    max-width: 100%;
-  }
-
-  .quiz-footer-actions {
-    justify-content: flex-end;
-  }
-}
-
-
+      .quiz-footer-actions {
+        justify-content: flex-end;
+      }
+    }
 
     @media (min-width: 768px) {
       .panel-card {
@@ -1040,9 +1050,6 @@
         font-size: 1.6rem;
       }
     }
-    .section-title {
-  text-align: center;
-}
   </style>
 </head>
 <body aria-labelledby="site-title">
@@ -1055,8 +1062,7 @@
       </h1>
       <div class="header-right">
         <p class="tagline">
-          Fast, arcade-style quizzes about Marvel Contest of Champions  
-
+          Fast, arcade-style quizzes about Marvel Contest of Champions
         </p>
 
         <!-- Channel button -->
@@ -1076,39 +1082,38 @@
       <section id="start-screen" class="panel" aria-label="Difficulty selection">
         <div class="panel-card">
           <div>
-            <h2 class="section-title">Pick your difficulty</h2>
-            <p style="margin-top:4px;font-size:0.95rem;color:var(--text-soft);">
-              Questions are dynamically generated from curated data about Champion classes,
+            <h2 class="section-title">Arcade select</h2>
+            <p class="section-lead">
+              Choose your game mode. Each run randomizes questions about Champion classes,
               immunities, game modes, currencies and combat mechanics. Every run feels fresh.
             </p>
           </div>
 
           <div class="mode-buttons">
             <button id="easy-btn" class="btn primary" type="button">
-              Easy
+              🟦 Easy – Casual mode
             </button>
             <button id="hard-btn" class="btn secondary" type="button">
-              Hard
+              🟧 Hard – Ranked mode
             </button>
             <button id="veryhard-btn" class="btn outline" type="button">
-              Very hard
+              🟥 Very hard – Expert mode
             </button>
           </div>
 
           <!-- Easy mode question-count selector -->
           <div id="easy-options" class="easy-options hidden">
             <p class="easy-options-label">
-              How many Easy questions would you like this round?
+              How many Easy questions would you like this run?
             </p>
             <div class="easy-options-buttons">
-              <button class="btn chip" data-easy-count="10" type="button">10 questions</button>
-              <button class="btn chip" data-easy-count="20" type="button">20 questions</button>
-              <button class="btn chip" data-easy-count="30" type="button">30 questions</button>
+              <button class="btn chip" data-easy-count="10" type="button">10 stages</button>
+              <button class="btn chip" data-easy-count="20" type="button">20 stages</button>
+              <button class="btn chip" data-easy-count="30" type="button">30 stages</button>
             </div>
           </div>
 
           <div class="safety-note">
-            
             <ul>
               <li>
                 This is an <strong>unofficial</strong> fan project and is not endorsed by Kabam,
@@ -1135,7 +1140,7 @@
               <span></span>
               <span></span>
             </div>
-            <p class="loader-text">Building a quiz for you</p>
+            <p class="loader-text">Building a run for you</p>
             <p class="loader-sub">
               Shuffling champion data, class matchups and combat mechanics into a random quiz.
             </p>
@@ -1151,6 +1156,7 @@
               <div id="mode-label" class="mode-label"></div>
               <div id="progress-label" class="progress-label"></div>
               <div id="score-mini" class="score-mini"></div>
+              <div id="streak-tag" class="score-mini hidden"></div>
             </div>
             <div class="progress-bar" aria-hidden="true">
               <div id="progress-fill" class="progress-fill"></div>
@@ -1181,7 +1187,7 @@
             <div class="quiz-footer-actions">
               <button id="quiz-home-btn" class="btn outline small-btn" type="button">Home</button>
               <button id="next-btn" class="btn primary" type="button" disabled>
-                Next question
+                Next stage
               </button>
             </div>
           </div>
@@ -1194,6 +1200,8 @@
           <div>
             <h2 id="score-headline" aria-live="polite"></h2>
             <p id="score-details" class="score-details"></p>
+            <p id="rank-line" class="score-details"></p>
+            <p id="best-score-line" class="score-details"></p>
           </div>
 
           <div class="summary-actions">
@@ -1237,7 +1245,7 @@
     (function () {
       "use strict";
 
-      // Keep track of which "screen" we're on so the browser Back button
+      // Track which "screen" we're on so the browser Back button
       // (or swipe back on mobile) can return to the home screen.
       if (history.state === null) {
         history.replaceState({ screen: "home" }, document.title, location.href);
@@ -1245,6 +1253,21 @@
 
       const EASY_QUESTION_MAX = 30;
       const HARD_QUESTION_COUNT = 15;
+      const BEST_SCORE_KEY = "mcoc_quiz_best_score";
+
+      // Micro feedback messages
+      const POSITIVE_MESSAGES = [
+        "Nice parry! That was clean.",
+        "Perfect matchup! Keep going.",
+        "You dodged that like a pro.",
+        "Big brain play. The Contest approves."
+      ];
+      const NEGATIVE_MESSAGES = [
+        "Ouch, that one clipped you.",
+        "Wrong counter – try a different class next time.",
+        "The Battlerealm is unforgiving. Shake it off.",
+        "Close! That interaction is tricky."
+      ];
 
       // --- Audio: click & feedback sounds (no background loop) -------------
       let audioCtx = null;
@@ -1342,7 +1365,6 @@
 
       // Sound toggle button
       soundToggleBtn.addEventListener("click", function () {
-        // play click based on current state, then toggle
         playClickSound();
         soundsEnabled = !soundsEnabled;
         soundToggleBtn.textContent = soundsEnabled ? "🔊 Sound: On" : "🔇 Sound: Off";
@@ -1357,6 +1379,7 @@
       let selectedChoiceIndex = null;
       let currentScorePoints = 0;
       let currentTotalQuestions = 0;
+      let currentStreak = 0;
 
       // --- DOM references ---------------------------------------------------
       const startScreen = document.getElementById("start-screen");
@@ -1368,6 +1391,7 @@
       const progressLabelEl = document.getElementById("progress-label");
       const scoreMiniEl = document.getElementById("score-mini");
       const progressFillEl = document.getElementById("progress-fill");
+      const streakTag = document.getElementById("streak-tag");
 
       const questionCard = document.getElementById("question-card");
       const questionTextEl = document.getElementById("question-text");
@@ -1381,6 +1405,8 @@
 
       const scoreHeadline = document.getElementById("score-headline");
       const scoreDetails = document.getElementById("score-details");
+      const rankLine = document.getElementById("rank-line");
+      const bestScoreLine = document.getElementById("best-score-line");
       const summaryContainer = document.getElementById("summary-container");
 
       const easyBtn = document.getElementById("easy-btn");
@@ -1461,19 +1487,17 @@
         handleNext();
       });
 
-       // Allow pressing Enter to submit text answers as well
+      // Allow pressing Enter to submit text answers as well
       document.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === "Return") {
-          // Only act if the text input is focused
           if (document.activeElement === textInput && !nextBtn.disabled) {
-            event.preventDefault(); // stop any default behavior
+            event.preventDefault();
             handleNext();
           }
         }
       });
-      
-      // --- Core flow --------------------------------------------------------
 
+      // --- Core flow --------------------------------------------------------
       function beginQuiz(mode, questionCountOverride) {
         if (
           !window.MCOC_QUIZ_BANK ||
@@ -1484,9 +1508,10 @@
         }
 
         currentMode = mode;
+        currentStreak = 0;
+        streakTag.classList.add("hidden");
 
         // When a quiz starts, push a new history state.
-        // Now the device Back button will go from quiz -> home instead of leaving the site.
         history.pushState({ screen: "quiz" }, document.title, "#quiz");
 
         if (mode === "easy") {
@@ -1494,7 +1519,6 @@
         } else if (mode === "hard") {
           pointsPerQuestion = 2;
         } else {
-          // veryHard
           pointsPerQuestion = 3;
         }
 
@@ -1502,7 +1526,7 @@
 
         const questionCount =
           questionCountOverride ||
-          (mode === "easy" ? EASY_QUESTION_MAX : HARD_QUESTION_COUNT); // 15 for both hard + very hard
+          (mode === "easy" ? EASY_QUESTION_MAX : HARD_QUESTION_COUNT);
 
         currentTotalQuestions = questionCount;
 
@@ -1526,21 +1550,21 @@
 
           if (mode === "easy") {
             modeLabelEl.textContent =
-              "Easy quiz – " +
+              "🟦 Easy – Casual mode (" +
               currentTotalQuestions +
-              " multiple-choice questions, 1 point each.";
+              " stages, 1 point each)";
             footerNote.textContent =
-              "";
+              "Tap the best answer to clear each stage. Build a streak for bragging rights.";
           } else if (mode === "hard") {
             modeLabelEl.textContent =
-              "Hard quiz – 15 text-entry questions, 2 points each.";
+              "🟧 Hard – Ranked mode (15 stages, 2 points each)";
             footerNote.textContent =
-              "";
+              "Type your answer and hit Enter or the button. Clean streaks look great in the HUD.";
           } else {
             modeLabelEl.textContent =
-              "Very hard quiz – 15 expert text-entry questions, 3 points each.";
+              "🟥 Very hard – Expert mode (15 stages, 3 points each)";
             footerNote.textContent =
-              "";
+              "Expect advanced questions about immunities and alliance modes. Survive as many stages as you can.";
           }
 
           updateProgress();
@@ -1551,7 +1575,7 @@
       function showQuestion() {
         const q = questions[currentQuestionIndex];
         progressLabelEl.textContent =
-          "Question " + (currentQuestionIndex + 1) + " of " + questions.length;
+          "Stage " + (currentQuestionIndex + 1) + " / " + questions.length;
 
         questionTextEl.textContent = q.question;
 
@@ -1580,8 +1604,8 @@
 
           nextBtn.textContent =
             currentQuestionIndex === questions.length - 1
-              ? "Finish quiz"
-              : "Next question";
+              ? "Finish run"
+              : "Next stage";
         } else {
           choicesContainer.classList.add("hidden");
           choicesContainer.innerHTML = "";
@@ -1592,8 +1616,8 @@
 
           nextBtn.textContent =
             currentQuestionIndex === questions.length - 1
-              ? "Finish quiz"
-              : "Submit & next";
+              ? "Finish run"
+              : "Submit & next stage";
         }
 
         updateProgress();
@@ -1656,9 +1680,28 @@
           });
         }
 
+        // Update streak + streak badge
+        if (isCorrect) {
+          currentStreak++;
+          if (currentStreak >= 2) {
+            streakTag.textContent = "Streak x" + currentStreak + "!";
+            streakTag.classList.remove("hidden");
+          } else {
+            streakTag.classList.add("hidden");
+          }
+        } else {
+          currentStreak = 0;
+          streakTag.classList.add("hidden");
+        }
+
+        // Feedback line
+        const pool = isCorrect ? POSITIVE_MESSAGES : NEGATIVE_MESSAGES;
+        footerNote.textContent =
+          pool[Math.floor(Math.random() * pool.length)];
+
         // flash the card and play feedback sound
         questionCard.classList.remove("correct-flash", "wrong-flash");
-        void questionCard.offsetWidth; // restart animation
+        void questionCard.offsetWidth;
         questionCard.classList.add(isCorrect ? "correct-flash" : "wrong-flash");
         playFeedbackSound(isCorrect);
 
@@ -1702,6 +1745,13 @@
         });
       }
 
+      function getRank(percent) {
+        if (percent >= 85) return "Thronebreaker Mind";
+        if (percent >= 60) return "Conqueror";
+        if (percent >= 30) return "Challenger";
+        return "Rookie Summoner";
+      }
+
       function finishQuiz() {
         quizScreen.classList.add("hidden");
         resultScreen.classList.remove("hidden");
@@ -1739,6 +1789,26 @@
           percent +
           "%). " +
           feedback;
+
+        const rank = getRank(percent);
+        rankLine.textContent = "Rank this run: " + rank;
+
+        // Best score on this device
+        let storedBest = 0;
+        try {
+          const raw = window.localStorage.getItem(BEST_SCORE_KEY);
+          if (raw) {
+            storedBest = parseInt(raw, 10) || 0;
+          }
+          if (totalPoints > storedBest) {
+            storedBest = totalPoints;
+            window.localStorage.setItem(BEST_SCORE_KEY, String(storedBest));
+          }
+        } catch (e) {
+          // localStorage not available; ignore
+        }
+        bestScoreLine.textContent =
+          "Best score on this device: " + storedBest + " pts";
 
         buildSummary();
       }
@@ -1843,11 +1913,18 @@
           b.classList.remove("active");
         });
 
-        // Clear any old state so new runs are fresh
         questions = [];
         userAnswers = [];
         currentQuestionIndex = 0;
         currentScorePoints = 0;
+        currentStreak = 0;
+        streakTag.classList.add("hidden");
+
+        try {
+          history.replaceState({ screen: "home" }, document.title, location.pathname);
+        } catch (e) {
+          // ignore
+        }
       }
 
       function escapeHtml(str) {
@@ -1863,13 +1940,9 @@
       window.addEventListener("popstate", function (event) {
         const screen = event.state && event.state.screen;
 
-        // If the history state says "home", show the start screen.
-        // This triggers when the user presses Back while in a quiz.
         if (screen === "home" || screen === undefined || screen === null) {
           goHome();
         }
-        // (If you later add separate states for "result" etc.,
-        // you can handle them here too.)
       });
     })();
   </script>
