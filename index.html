@@ -1387,6 +1387,17 @@
         handleNext();
       });
 
+       // Allow pressing Enter to submit text answers as well
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === "Return") {
+          // Only act if the text input is focused
+          if (document.activeElement === textInput && !nextBtn.disabled) {
+            event.preventDefault(); // stop any default behavior
+            handleNext();
+          }
+        }
+      });
+      
       // --- Core flow --------------------------------------------------------
 
       function beginQuiz(mode, questionCountOverride) {
